@@ -1,12 +1,11 @@
 package co.com.ml.domain;
 
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-public class MutanteMainTest extends TestCase {
+public class MutanteMainTest {
 
     @InjectMocks
     MutanteMain mutanteMain;

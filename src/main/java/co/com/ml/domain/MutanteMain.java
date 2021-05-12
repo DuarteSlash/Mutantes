@@ -3,7 +3,7 @@ package co.com.ml.domain;
 public class MutanteMain {
         public static void main(String[] args) {
 
-            String[] dna = {"ATGCGA","CAGTGC","TTATGT","AGAAAG","CGCCTA","TCACTG"};
+            String[] dna = {"ATGCGA","CTGTGC","TTATGT","AGAAAG","CGCCTA","TCACTG"};
 
             //"TCACTG"
 

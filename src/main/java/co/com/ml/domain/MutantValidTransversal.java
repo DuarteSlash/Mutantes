@@ -2,9 +2,11 @@ package co.com.ml.domain;
 
 import co.com.ml.utils.Utilities;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MutantValidTransversal {
 
     @Autowired
@@ -29,8 +31,8 @@ public class MutantValidTransversal {
         int contarrepetidos = 1;
         String siguiente;
 
-        for (int contarfilas = 0; contarfilas < caracteres.length; contarfilas++) {
-
+        for (int contarfilas = 0; contarfilas < caracteres.length-3; contarfilas++) {
+            contarcolumnas = 0;
             String anterior = caracteres[contarfilas][contarcolumnas];
 
             for (contarcolumnas = 0; contarcolumnas < caracteres[0].length-3; contarcolumnas++) {

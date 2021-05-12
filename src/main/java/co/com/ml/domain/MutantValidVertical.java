@@ -4,7 +4,9 @@ import java.util.List;
 
 import co.com.ml.utils.Utilities;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MutantValidVertical{
 
     @Autowired
