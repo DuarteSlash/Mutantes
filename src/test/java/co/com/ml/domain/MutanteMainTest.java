@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import java.io.IOException;
+
 public class MutanteMainTest {
 
     @InjectMocks
@@ -14,7 +16,7 @@ public class MutanteMainTest {
     MutanteService mutanteService;
 
     @Test
-    public void testMain() {
+    public void testMain() throws IOException {
         String[] args = new String[0];
         mutanteMain.main(args);
         Assert.assertNotNull(args);

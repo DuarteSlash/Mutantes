@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+import java.io.IOException;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertFalse;
@@ -40,7 +41,7 @@ public class MutanteServiceTest {
     Utilities utilities;
 
 
-    public MutanteServiceTest(){
+    public MutanteServiceTest() throws IOException {
         mutanteService = new MutanteService();
         mutantValidHorizontal = new MutantValidHorizontal();
         mutantValidVertical = new MutantValidVertical();

@@ -2,11 +2,12 @@ package co.com.ml.domain;
 
 import co.com.ml.utils.Utilities;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Component
 public class MutantValidTransversal {
 
     @Autowired
@@ -48,6 +49,7 @@ public class MutantValidTransversal {
                 if (caracteres[contarfilas][contarcolumnas].matches(caracteres[contarfilas+1][contarcolumnas + 1])
                         && caracteres[contarfilas][contarcolumnas].matches(caracteres[contarfilas+2][contarcolumnas + 2])
                         && caracteres[contarfilas][contarcolumnas].matches(caracteres[contarfilas+3][contarcolumnas+ 3])) {
+                    System.out.println("ADN Transversal repetido");
                     return true;
                 }
             }

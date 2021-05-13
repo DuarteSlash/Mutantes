@@ -1,7 +1,9 @@
 package co.com.ml.domain;
 
+import java.io.IOException;
+
 public class MutanteMain {
-        public static void main(String[] args) {
+        public static void main(String[] args) throws IOException {
 
             String[] dna = {"ATGCGA","CTGTGC","TTATGT","AGAAAG","CGCCTA","TCACTG"};
 
