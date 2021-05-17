@@ -23,3 +23,19 @@ La persona no es un Mutante
 
 Se crea API para Nivel 2 y nivel 3 con base de datos de MongoDB
 
+Ejecutar el archivo Application.java para crear lanzar un server tomcat por el puerto 8080
+Con el postman adjunto se puede probar los servicios.
+
+/mutant/
+Status:
+200 ->mutante
+400 ->Humano
+
+
+/stats/
+Respose:
+{
+    "count_human_dna": 9,
+    "count_mutant_dna": 4,
+    "ratio": 2
+}
