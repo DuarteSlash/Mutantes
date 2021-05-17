@@ -15,15 +15,16 @@ public class MutantController {
 
     @PostMapping(path="/mutant", produces = "application/json")
     public void getMutant(HttpServletResponse response,
-                          @RequestBody Mutant dna) throws ResponseStatusException{
+                          @RequestBody Mutant dna) throws ResponseStatusException, IOException {
         try {
             IMutanteService mutantService = new MutanteService();
             if(!mutantService.isMutant(dna.getDna())) {
-                mutantService.save(dna,false);
                 response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            }
+                mutantService.save(dna,false);
+            }else
             mutantService.save(dna,true);
         }catch (Exception e){
+            response.sendError(HttpServletResponse.SC_FOUND,"Registro adn ya existe");
             e.getStackTrace();
         }
 
@@ -38,10 +39,8 @@ public class MutantController {
             return mutantStatistics;
         } catch (IOException ioException) {
             ioException.printStackTrace();
-        } catch (ExecutionException executionException) {
-            executionException.printStackTrace();
-        } catch (InterruptedException interruptedException) {
-            interruptedException.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         String data = "[\"ATGCGA\",\"CAGTGC\",\"TTATGT\",\"AGAAGG\",\"CCCCTA\",\"TCACTG\"]";
         return null;

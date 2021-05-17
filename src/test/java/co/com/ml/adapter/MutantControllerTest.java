@@ -5,8 +5,8 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 
 public class MutantControllerTest extends TestCase {
@@ -24,7 +24,7 @@ public class MutantControllerTest extends TestCase {
     }
 
     @Test
-    public void testGetMutant() {
+    public void testGetMutant() throws IOException {
         String[] dna = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"};
         Mutant mutant = new Mutant();
         mutant.setDna(dna);
