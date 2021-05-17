@@ -1,0 +1,76 @@
+{
+	"id": "6aa644f4-953b-ad76-be5f-31542d8b71b7",
+	"name": "ProyectoX",
+	"description": "",
+	"order": [
+		"66a548b4-15e6-39ad-ca1b-b46a91ad9951",
+		"869a35e6-8e2e-ee94-2319-2b3fe83bbd54"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1620855166119,
+	"owner": "2356719",
+	"public": false,
+	"requests": [
+		{
+			"id": "66a548b4-15e6-39ad-ca1b-b46a91ad9951",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/mutant",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1620868435664,
+			"name": "http://localhost:8080/mutant",
+			"description": "",
+			"collectionId": "6aa644f4-953b-ad76-be5f-31542d8b71b7",
+			"responses": [],
+			"rawModeData": "{\"dna\":[\"ATGCGA\",\"CAGTGC\",\"TTATGT\",\"AGAAAG\",\"CGCCTA\",\"TCACTG\"]}"
+		},
+		{
+			"id": "869a35e6-8e2e-ee94-2319-2b3fe83bbd54",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:8080/stats?adn={\n  \"dna\": [\n    \"ATGCGA\",\n    \"CAGTGC\",\n    \"TTATGT\",\n    \"AGAAAG\",\n    \"CGCCTA\",\n    \"TCACTG\"\n  ]\n}",
+			"queryParams": [
+				{
+					"key": "adn",
+					"value": "{\n  \"dna\": [\n    \"ATGCGA\",\n    \"CAGTGC\",\n    \"TTATGT\",\n    \"AGAAAG\",\n    \"CGCCTA\",\n    \"TCACTG\"\n  ]\n}",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "6aa644f4-953b-ad76-be5f-31542d8b71b7",
+			"data": null,
+			"dataMode": "params",
+			"name": "estadisticas",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1620868457503,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		}
+	]
+}

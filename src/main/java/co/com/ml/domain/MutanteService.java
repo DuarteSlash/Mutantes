@@ -1,12 +1,23 @@
 package co.com.ml.domain;
 
 import co.com.ml.adapter.MongoDB;
+import com.mongodb.BasicDBObject;
+import com.mongodb.Block;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
 import org.bson.Document;
+import org.bson.codecs.configuration.CodecConfigurationException;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
+
+import javax.print.Doc;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.function.Consumer;
 
 @Service
 public class MutanteService implements IMutanteService {
@@ -31,40 +42,43 @@ public class MutanteService implements IMutanteService {
     }
 
     @Override
-    public MutantStatistics getStatistics() throws ExecutionException, InterruptedException {
-
+    public MutantStatistics getStatistics() throws Exception {
+        this.db = new MongoDB();
         MongoCollection<Document> mongoCollection = db.getDb().getCollection("statistics");
 
-        List<MutantDB> statistics = new ArrayList();
-        for (Document document : db.getDb().listCollections()) {
-
-            MutantDB mutant = new MutantDB();
-            mutant.setDna(document.getString("dna").split(","));
-            mutant.setMutante(document.getBoolean("mutante"));
-            statistics.add(mutant);
-        }
+        Document findMutante = new Document("mutante", true);
+        Document findHuman = new Document("mutante", false);
         MutantStatistics mutantStatistics = new MutantStatistics();
-        long count_mutant_dna = statistics.stream().filter(X-> X.isMutante()).count();
-        long count_human_dna = statistics.stream().filter(X-> !X.isMutante()).count();
-        mutantStatistics.setCount_mutant_dna(count_mutant_dna);
-        mutantStatistics.setCount_human_dna(count_human_dna);
-        mutantStatistics.setRatio(mutantStatistics.getCount_human_dna()/mutantStatistics.getCount_mutant_dna());
+
+        //mongoCollection.find(Filters.eq("mutante",true)).forEach((Consumer<Document>) (Document d) -> { System.out.println(d.toJson()); });
+        mutantStatistics.setCount_mutant_dna(mongoCollection.countDocuments(findMutante));
+        mutantStatistics.setCount_human_dna(mongoCollection.countDocuments(Filters.eq("mutante", false)));
+        mutantStatistics.setRatio(mutantStatistics.getCount_human_dna() / mutantStatistics.getCount_mutant_dna());
 
         System.out.println("count_human_dna: " + mutantStatistics.getCount_human_dna());
         System.out.println("count_mutant_dna: " + mutantStatistics.getCount_mutant_dna());
         System.out.println("ratio: " + mutantStatistics.getRatio());
-         return mutantStatistics;
+
+        return mutantStatistics;
     }
 
     @Override
     public void save(Mutant dna,boolean mutante) {
-        this.db = new MongoDB();
-        MongoCollection<Document> collection = db.getDb().getCollection("stadistics");
-
-        Document doc1 = new Document();
-        doc1.append("dna",dna.getDna());
-        doc1.append("mutante",mutante);
-        collection.insertOne(doc1);
+        try {
+            this.db = new MongoDB();
+            MongoCollection<Document> mongoCollection = db.getDb().getCollection("statistics");
+            Document doc = new Document("dna", Arrays.stream(dna.getDna()).distinct());
+            //mongoCollection.find(Filters.eq("dna",dna.getDna())).forEach((Consumer<Document>) (Document d) -> { System.out.println(d.toJson()); });
+            //if(Collections.binarySearch(mongoCollection.find().cursor().forEachRemaining().containsValue(doc)?1:0){
+                MutantDB doc1 = new MutantDB();
+                doc1.set_id(new ObjectId());
+                doc1.setDna(dna.getDna());
+                doc1.setMutante(mutante);
+                db.getDb().save(doc1, "statistics");
+            //}
+        }catch(CodecConfigurationException e){
+            e.printStackTrace();
+        }
     }
 
 /*

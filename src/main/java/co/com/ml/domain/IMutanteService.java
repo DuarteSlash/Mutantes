@@ -11,5 +11,5 @@ public interface IMutanteService {
 
     void save(Mutant dna,boolean mutante);
 
-    MutantStatistics getStatistics() throws IOException, ExecutionException, InterruptedException;
+    MutantStatistics getStatistics() throws IOException, ExecutionException, InterruptedException, Exception;
 }
