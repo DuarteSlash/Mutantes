@@ -39,3 +39,6 @@ Respose:
     "count_mutant_dna": 4,
     "ratio": 2
 }
+API en Google cloud
+
+https://mutantes-zvykayydpq-uc.a.run.app
